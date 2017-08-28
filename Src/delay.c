@@ -18,7 +18,7 @@
 //
 //	Description
 //		Constant wait.
-//		Independence from CPU clock.  
+//		Independence from CPU clock.
 //
 //	Uasge
 //		Edit source file "delay.h" in configure
@@ -38,33 +38,36 @@
 
 #include "delay.h"
 
-void delay_50uTimes(unsigned char bTimes){
-    for(; bTimes > 0; --bTimes) {
+void delay_50uTimes(unsigned char bTimes)
+{
+    for (; bTimes > 0; --bTimes)
+    {
         delay_50u();
     }
     return;
 }
 
-void delay_1mTimes(unsigned char bTimes){
-    for(; bTimes > 0; --bTimes) {
+void delay_1mTimes(unsigned char bTimes)
+{
+    for (; bTimes > 0; --bTimes)
+    {
         delay_50uTimes(20);
     }
     return;
 }
 
-
 void wait_ms(uint16_t tim)
 {
-	while ( tim-- ) 
-	{
-		_delay_ms( 1 );
-	}
+    while (tim--)
+    {
+        _delay_ms(1);
+    }
 }
 
 void wait_sec(uint16_t tim)
 {
-	while ( tim-- ) 
-	{
-		wait_ms( 1000 );
-	}
+    while (tim--)
+    {
+        wait_ms(1000);
+    }
 }

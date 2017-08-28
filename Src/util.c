@@ -24,33 +24,31 @@
 /* local variables -----------------------------------------------------------*/
 /* local function prototypes -------------------------------------------------*/
 
-
 /*==========================================================*/
 /*   移動平均用のデータをひとつ登録							*/
 /*==========================================================*/
-void storeData( short data, short *buf, uint8_t bufsize )
+void storeData(short data, short *buf, uint8_t bufsize)
 {
-    register uint8_t i;
+	register uint8_t i;
 	short *p;
 
-	for ( i = 0, p = buf; i < bufsize - 1; i++, p++ )
+	for (i = 0, p = buf; i < bufsize - 1; i++, p++)
 	{
 		*p = *(p + 1);
 	}
 	*p = data;
 }
 
-
 /*==========================================================*/
 /*   移動平均用のデータの総和を取る							*/
 /*==========================================================*/
-long sumData( short *buf, uint8_t bufsize )
+long sumData(short *buf, uint8_t bufsize)
 {
-    register uint8_t i;
+	register uint8_t i;
 	long sum;
 	short *p;
 
-	for ( i = 0, p = buf, sum = 0; i < bufsize; i++, p++ )
+	for (i = 0, p = buf, sum = 0; i < bufsize; i++, p++)
 	{
 		sum += *p;
 	}
@@ -58,31 +56,29 @@ long sumData( short *buf, uint8_t bufsize )
 	return sum;
 }
 
-
 /*==========================================================*/
 /*   年、月、日を指定すると、曜日を返す。(1:日, ... 7:土)	*/
 /*==========================================================*/
-int getWeekday( int nYear, int nMonth, int nDay )
+int getWeekday(int nYear, int nMonth, int nDay)
 {
-    int nWeekday, nTmp;
+	int nWeekday, nTmp;
 
-    if (nMonth == 1 || nMonth == 2)
-    {
-        nYear--;
-        nMonth += 12;
-    }
+	if (nMonth == 1 || nMonth == 2)
+	{
+		nYear--;
+		nMonth += 12;
+	}
 
-    nTmp = nYear/100;
-    nWeekday = (nYear + (nYear >> 2) - nTmp + (nTmp >> 2) + (13 * nMonth + 8)/5 + nDay) % 7;
+	nTmp = nYear / 100;
+	nWeekday = (nYear + (nYear >> 2) - nTmp + (nTmp >> 2) + (13 * nMonth + 8) / 5 + nDay) % 7;
 
-    return nWeekday + 1;
+	return nWeekday + 1;
 }
-
 
 /*==========================================================*/
 /*   文字列比較(大文字小文字無視)							*/
 /*==========================================================*/
-int strcmp_ignorecase( const char *s1, const char *s2 )
+int strcmp_ignorecase(const char *s1, const char *s2)
 {
 	int i = 0;
 
